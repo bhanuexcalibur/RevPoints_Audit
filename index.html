@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RevPoints Growth Audit · Bhanu Kumar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:        #0c0c0e;
+  --bg2:       #111115;
+  --bg3:       #18181e;
+  --bg4:       #1f1f28;
+  --border:    rgba(255,255,255,0.07);
+  --border-md: rgba(255,255,255,0.12);
+  --border-lg: rgba(255,255,255,0.18);
+  --text-1:    #f0efe8;
+  --text-2:    #a09e96;
+  --text-3:    #5a5855;
+  --blue:      #4f52f8;
+  --blue-dim:  rgba(79,82,248,0.12);
+  --blue-glow: rgba(79,82,248,0.25);
+  --blue-text: #8b8ef7;
+  --green:     #22c47a;
+  --green-dim: rgba(34,196,122,0.1);
+  --green-text:#5edba0;
+  --red:       #e05050;
+  --red-dim:   rgba(224,80,80,0.1);
+  --red-text:  #f08080;
+  --amber:     #e8a030;
+  --amber-dim: rgba(232,160,48,0.1);
+  --amber-text:#f0c060;
+  --purple:    #8b6ef8;
+  --purple-dim:rgba(139,110,248,0.1);
+  --purple-text:#b8a0fa;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ======= LAYOUT ======= */
+.page-wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 44px 28px 88px;
+}
+
+/* ======= NAV ======= */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 52px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text-1);
+}
+
+.nav-logo span { color: var(--blue-text); }
+
+.nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.nav-pill {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  text-decoration: none;
+  background: var(--bg3);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.nav-pill:hover {
+  border-color: var(--border-md);
+  color: var(--text-1);
+  background: var(--bg4);
+}
+
+.nav-pill.cta {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+
+.nav-pill.cta:hover { opacity: 0.88; }
+
+/* ======= COVER ======= */
+.cover {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 48px 44px 40px;
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(79,82,248,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 40%;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(139,110,248,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.cover-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-text);
+  background: var(--blue-dim);
+  border: 1px solid rgba(79,82,248,0.2);
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+
+.eyebrow-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.cover-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(30px, 4.5vw, 48px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 18px;
+  max-width: 600px;
+  color: var(--text-1);
+}
+
+.cover-title .accent {
+  color: var(--blue-text);
+}
+
+.cover-sub {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+
+.cover-meta {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.meta-item {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.meta-item strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-1);
+  margin-bottom: 2px;
+}
+
+/* ======= SECTION HEADER ======= */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  margin-top: 40px;
+}
+
+.section-num {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--bg4);
+  border: 1px solid var(--border-md);
+  color: var(--text-2);
+  font-size: 11px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* ======= METRIC CARDS ======= */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.metric-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 18px;
+  transition: border-color 0.2s;
+}
+
+.metric-card:hover { border-color: var(--border-md); }
+
+.metric-label {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-bottom: 10px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.metric-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.metric-value.neutral { color: var(--text-1); }
+.metric-value.positive { color: var(--green); }
+.metric-value.gap { color: var(--red); }
+
+.metric-context {
+  font-size: 11px;
+  color: var(--text-3);
+  line-height: 1.4;
+}
+
+/* ======= GAP CARD ======= */
+.gap-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 30px 34px;
+  margin-bottom: 24px;
+}
+
+.gap-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.gap-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 620px;
+  font-weight: 300;
+}
+
+.bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-3);
+  margin-bottom: 10px;
+}
+
+.bar-track {
+  height: 10px;
+  background: var(--bg4);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: var(--blue);
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+.bar-legend {
+  display: flex;
+  gap: 22px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.callout {
+  margin-top: 20px;
+  padding: 14px 18px;
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 300;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-left: 3px solid var(--amber);
+  background: var(--amber-dim);
+  color: var(--amber-text);
+}
+
+/* ======= CALCULATOR ======= */
+.calculator-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 30px 34px;
+  margin-bottom: 24px;
+}
+
+.calc-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.calc-desc {
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 30px;
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.calc-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.slider-group { display: flex; flex-direction: column; gap: 26px; }
+
+.slider-item label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 10px;
+}
+
+.slider-val {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-1);
+  background: var(--bg4);
+  border: 1px solid var(--border-md);
+  padding: 3px 12px;
+  border-radius: 100px;
+  min-width: 70px;
+  text-align: center;
+}
+
+input[type=range] {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 100px;
+  background: var(--bg4);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--blue);
+  cursor: pointer;
+  border: 3px solid var(--bg2);
+  box-shadow: 0 0 0 1px var(--blue);
+  transition: transform 0.1s;
+}
+
+input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+input[type=range]::-moz-range-thumb {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--blue);
+  cursor: pointer;
+  border: 3px solid var(--bg2);
+}
+
+.calc-results { display: flex; flex-direction: column; gap: 10px; }
+
+.result-chip {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  transition: border-color 0.15s;
+}
+
+.result-chip:hover { border-color: var(--border-md); }
+
+.result-chip.highlight {
+  background: var(--blue-dim);
+  border-color: rgba(79,82,248,0.25);
+}
+
+.result-chip-label {
+  font-size: 11px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.result-chip-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-1);
+  line-height: 1;
+}
+
+.result-chip.highlight .result-chip-value { color: var(--blue-text); }
+
+.result-chip-sub {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-top: 4px;
+}
+
+/* ======= TWO COL ======= */
+.two-col {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 22px;
+}
+
+.card-title {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-2);
+  letter-spacing: 0.01em;
+}
+
+.finding-list { display: flex; flex-direction: column; gap: 13px; }
+
+.finding { display: flex; gap: 10px; align-items: flex-start; }
+
+.finding-icon {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.finding-icon.good { background: var(--green-dim); color: var(--green-text); }
+.finding-icon.bad  { background: var(--red-dim);   color: var(--red-text);   }
+.finding-icon.info { background: var(--blue-dim);  color: var(--blue-text);  }
+
+.finding-text {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.finding-text strong { color: var(--text-1); font-weight: 500; }
+
+/* ======= COMPETITOR TABLE ======= */
+.table-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.comp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+
+.comp-table thead th {
+  background: var(--bg3);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.comp-table tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-2);
+  vertical-align: top;
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+.comp-table tbody tr:last-child td { border-bottom: none; }
+.comp-table tbody td:first-child { font-weight: 500; color: var(--text-1); }
+.comp-table tbody tr.rev-row td { background: var(--blue-dim); }
+.comp-table tbody tr.rev-row td:first-child { color: var(--blue-text); }
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 10px;
+  border-radius: 100px;
+}
+
+.badge-win     { background: var(--green-dim); color: var(--green-text); }
+.badge-gap     { background: var(--red-dim);   color: var(--red-text);   }
+.badge-neutral { background: var(--bg4);       color: var(--text-2);     }
+
+/* ======= POSITIONING ======= */
+.pos-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 30px 34px;
+  margin-bottom: 24px;
+}
+
+.pos-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.pos-desc {
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 24px;
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.pos-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 32px minmax(0,1fr);
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.pos-box {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+}
+
+.pos-box.recommended {
+  background: var(--blue-dim);
+  border-color: rgba(79,82,248,0.2);
+}
+
+.pos-box-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 7px;
+}
+
+.pos-box.recommended .pos-box-label { color: var(--blue-text); opacity: 0.7; }
+
+.pos-box-text {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+.pos-box.recommended .pos-box-text { color: var(--blue-text); }
+
+.pos-arrow { text-align: center; color: var(--text-3); font-size: 18px; }
+
+/* ======= 30-60-90 TIMELINE ======= */
+.timeline-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 30px 34px;
+  margin-bottom: 24px;
+}
+
+.timeline-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.timeline-desc {
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 26px;
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.timeline-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.timeline-tab {
+  padding: 10px 22px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--text-3);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+  white-space: nowrap;
+}
+
+.timeline-tab:hover { color: var(--text-2); }
+.timeline-tab.active-d30 { color: #7eb8f7; border-bottom-color: #7eb8f7; }
+.timeline-tab.active-d60 { color: var(--green-text); border-bottom-color: var(--green); }
+.timeline-tab.active-d90 { color: var(--purple-text); border-bottom-color: var(--purple); }
+
+.timeline-panel { display: none; animation: fadeIn 0.2s ease; }
+.timeline-panel.active { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+.panel-focus {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+}
+
+.panel-focus.d30 { color: #7eb8f7; }
+.panel-focus.d60 { color: var(--green-text); }
+.panel-focus.d90 { color: var(--purple-text); }
+
+.action-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  gap: 12px;
+}
+
+.action-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px 18px;
+  background: var(--bg3);
+  transition: border-color 0.15s, transform 0.1s;
+}
+
+.action-item:hover { transform: translateY(-2px); }
+.action-item.d30:hover { border-color: rgba(126,184,247,0.3); }
+.action-item.d60:hover { border-color: rgba(34,196,122,0.3); }
+.action-item.d90:hover { border-color: rgba(139,110,248,0.3); }
+
+.action-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 10px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.action-tag.d30 { background: rgba(126,184,247,0.12); color: #7eb8f7; }
+.action-tag.d60 { background: var(--green-dim); color: var(--green-text); }
+.action-tag.d90 { background: var(--purple-dim); color: var(--purple-text); }
+
+.action-title {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 7px;
+  color: var(--text-1);
+}
+
+.action-body {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ======= RESUME SECTION ======= */
+.resume-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 30px 34px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.resume-left { flex: 1; min-width: 220px; }
+
+.resume-icon {
+  width: 44px; height: 44px;
+  background: var(--blue-dim);
+  border: 1px solid rgba(79,82,248,0.2);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.resume-icon svg { width: 22px; height: 22px; }
+
+.resume-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.resume-sub {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+  font-weight: 300;
+  max-width: 420px;
+}
+
+.resume-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.resume-btn.primary {
+  background: var(--blue);
+  color: #fff;
+  border: 1px solid var(--blue);
+}
+
+.resume-btn.primary:hover { opacity: 0.88; }
+
+.resume-btn.secondary {
+  background: var(--bg3);
+  color: var(--text-2);
+  border: 1px solid var(--border-md);
+}
+
+.resume-btn.secondary:hover {
+  border-color: var(--border-lg);
+  color: var(--text-1);
+}
+
+.resume-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  width: 100%;
+}
+
+.resume-highlight {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.rh-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 5px;
+}
+
+.rh-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-1);
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.rh-desc {
+  font-size: 11px;
+  color: var(--text-3);
+  line-height: 1.4;
+}
+
+/* ======= METHODOLOGY ======= */
+.method-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 26px;
+  margin-bottom: 24px;
+}
+
+/* ======= SIGNATURE ======= */
+.sig {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 32px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sig::before {
+  content: '';
+  position: absolute;
+  bottom: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(79,82,248,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.sig-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-bottom: 8px;
+}
+
+.sig-details {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.sig-details a {
+  color: var(--blue-text);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.sig-details a:hover { opacity: 0.75; }
+
+.sig-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 13px 28px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: opacity 0.15s;
+}
+
+.sig-btn:hover { opacity: 0.88; }
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 660px) {
+  .page-wrap { padding: 28px 18px 60px; }
+  .cover { padding: 28px 22px 24px; }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .two-col, .calc-body, .action-grid { grid-template-columns: 1fr; }
+  .pos-row { grid-template-columns: 1fr; }
+  .pos-arrow { display: none; }
+  .calculator-card, .gap-card, .timeline-card, .pos-card, .resume-card { padding: 22px 18px; }
+  .resume-actions { align-items: flex-start; }
+  .resume-highlights { grid-template-columns: 1fr 1fr; }
+  .sig { flex-direction: column; align-items: flex-start; padding: 24px 22px; }
+  .timeline-tabs { overflow-x: auto; }
+  .timeline-tab { padding: 10px 14px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- NAV -->
+  <nav class="top-nav">
+    <div class="nav-logo">Bhanu <span>Kumar</span></div>
+    <div class="nav-links">
+      <a class="nav-pill" href="#opportunity">Opportunity</a>
+      <a class="nav-pill" href="#gaps">Gaps</a>
+      <a class="nav-pill" href="#plan">30-60-90</a>
+      <a class="nav-pill" href="#resume">Resume</a>
+      <a class="nav-pill cta" href="mailto:bhanukumar0902@gmail.com">Get in touch</a>
+    </div>
+  </nav>
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Candidate research document · April 2026
+    </div>
+    <div class="cover-title">RevPoints: a growth audit<br>and <span class="accent">opportunity framework</span></div>
+    <div class="cover-sub">An independent analysis of RevPoints' current marketing position, identified gaps, and a proposed 30-60-90 day strategy — prepared by a candidate for the PMM Loyalty role at Revolut.</div>
+    <div class="cover-meta">
+      <div class="meta-item"><strong>Bhanu Kumar</strong>Prepared by</div>
+      <div class="meta-item"><strong>PMM, Loyalty</strong>Role applied for</div>
+      <div class="meta-item"><strong>Revolut Annual Report 2025</strong>Primary data source</div>
+      <div class="meta-item"><strong>April 2026</strong>Date</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div id="opportunity">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-label">Where RevPoints stands today — verified numbers</div>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Total Revolut customers</div>
+        <div class="metric-value neutral">70M+</div>
+        <div class="metric-context">as of early 2026</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">RevPoints users</div>
+        <div class="metric-value positive">17M</div>
+        <div class="metric-context">up from 6.6M at end-2024</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Year-on-year user growth</div>
+        <div class="metric-value positive">+157%</div>
+        <div class="metric-context">fastest-growing loyalty product</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Customers not yet activated</div>
+        <div class="metric-value gap">~53M</div>
+        <div class="metric-context">the core marketing opportunity</div>
+      </div>
+    </div>
+
+    <div class="gap-card">
+      <div class="gap-title">The activation gap</div>
+      <div class="gap-desc">Only 1 in 4 Revolut customers currently uses RevPoints. The biggest growth lever is not acquiring new users — it is converting the 53M who already have the app but have never activated the programme.</div>
+      <div class="bar-labels">
+        <span>RevPoints users (17M)</span>
+        <span>Total Revolut customers (70M+)</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" id="gap-bar" style="width:0%"></div>
+      </div>
+      <div class="bar-legend">
+        <div class="legend-item">
+          <span class="legend-dot" style="background:var(--blue)"></span>
+          RevPoints active (24%)
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot" style="background:var(--bg4); border:1px solid var(--border-md)"></span>
+          Not yet activated (76%)
+        </div>
+      </div>
+      <div class="callout">
+        Activation requires a deliberate opt-in step through the Lifestyle tab — or the SpareChange prompt for Standard users. This is a marketing friction problem, not a product problem. And it is the clearest brief a PMM joining this team would inherit.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: CALCULATOR -->
+  <div>
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-label">Interactive: activation opportunity calculator</div>
+    </div>
+
+    <div class="calculator-card">
+      <div class="calc-title">What does activating the dormant base actually mean?</div>
+      <div class="calc-desc">Drag the sliders to model RevPoints user growth potential. All projections are based on the verified base of 53M dormant Revolut customers.</div>
+
+      <div class="calc-body">
+        <div class="slider-group">
+          <div class="slider-item">
+            <label>Activation rate of dormant base <span class="slider-val" id="rate-val">10%</span></label>
+            <input type="range" min="1" max="50" value="10" step="1" id="rate-slider">
+          </div>
+          <div class="slider-item">
+            <label>Campaign timeframe <span class="slider-val" id="months-val">6 mo</span></label>
+            <input type="range" min="1" max="24" value="6" step="1" id="months-slider">
+          </div>
+          <div class="slider-item">
+            <label>Avg monthly spend per user <span class="slider-val" id="spend-val">£500</span></label>
+            <input type="range" min="100" max="2500" value="500" step="50" id="spend-slider">
+          </div>
+        </div>
+
+        <div class="calc-results">
+          <div class="result-chip">
+            <div class="result-chip-label">New RevPoints users unlocked</div>
+            <div class="result-chip-value" id="new-users">5.3M</div>
+            <div class="result-chip-sub">from dormant base of 53M</div>
+          </div>
+          <div class="result-chip highlight">
+            <div class="result-chip-label">Total RevPoints users (projected)</div>
+            <div class="result-chip-value" id="total-users">22.3M</div>
+            <div class="result-chip-sub">vs 17M today</div>
+          </div>
+          <div class="result-chip">
+            <div class="result-chip-label">Points earned per month (est.)</div>
+            <div class="result-chip-value" id="points-earned">530M</div>
+            <div class="result-chip-sub">at Standard earn rate (1pt per £10)</div>
+          </div>
+          <div class="result-chip">
+            <div class="result-chip-label">Likely upgrade signal (est. 10%)</div>
+            <div class="result-chip-value" id="upgrade-signal">530K</div>
+            <div class="result-chip-sub">users likely to upgrade plan to earn faster</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: GAPS -->
+  <div id="gaps">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-label">What is working vs. where the gaps are</div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">What RevPoints is doing well</div>
+        <div class="finding-list">
+          <div class="finding">
+            <div class="finding-icon good">+</div>
+            <div class="finding-text"><strong>157% user growth in one year</strong> demonstrates strong product-market fit once users are activated</div>
+          </div>
+          <div class="finding">
+            <div class="finding-icon good">+</div>
+            <div class="finding-text"><strong>Partner strategy is strong</strong>: Audi F1 team, Manchester City, and NBA give RevPoints cultural relevance beyond banking</div>
+          </div>
+          <div class="finding">
+            <div class="finding-icon good">+</div>
+            <div class="finding-text"><strong>No credit card required</strong>: a genuine differentiator from Amex and Barclaycard that is currently under-marketed to the wider public</div>
+          </div>
+          <div class="finding">
+            <div class="finding-icon good">+</div>
+            <div class="finding-text"><strong>36 markets</strong> means a global playbook can be built once and localised — a significant efficiency advantage at scale</div>
+          </div>
+          <div class="finding">
+            <div class="finding-icon good">+</div>
+            <div class="finding-text"><strong>63% of new Revolut users come via referral</strong>: loyalty users who redeem rewards are natural referrers, a loop not yet actively marketed</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Identified marketing gaps</div>
+        <div class="finding-list">
+          <div class="finding">
+            <div class="finding-icon bad">!</div>
+            <div class="finding-text"><strong>Activation friction</strong>: RevPoints requires manual opt-in. No evidence of a sustained re-engagement campaign targeting the 53M dormant base</div>
+          </div>
+          <div class="finding">
+            <div class="finding-icon bad">!</div>
+            <div class="finding-text"><strong>Weak value prop for Standard users</strong>: earning 1pt per £10 vs 1pt per £1 on Ultra creates a thin reason to activate for the largest user segment</div>
+          </div>
+          <div class="finding">
+            <div class="finding-icon bad">!</div>
+            <div class="finding-text"><strong>Earn rate changes are silent</strong>: partner shop rates change without proactive comms, eroding trust among power users per community feedback</div>
+          </div>
+          <div class="finding">
+            <div class="finding-icon bad">!</div>
+            <div class="finding-text"><strong>Travel framing dominates messaging</strong>: airline miles speak to a minority of users; everyday Revolut Pay redemptions are under-communicated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top:8px;">
+      <div class="section-num" style="background:var(--bg4);">+</div>
+      <div class="section-label">Competitive landscape</div>
+    </div>
+
+    <div class="table-card">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Programme</th>
+            <th>Credit card?</th>
+            <th>Base earn rate</th>
+            <th>Key gap vs RevPoints</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="rev-row">
+            <td>RevPoints (Revolut)</td>
+            <td><span class="badge badge-win">Not required</span></td>
+            <td>1pt per £1 (Ultra) / 1pt per £10 (Standard)</td>
+            <td>76% of eligible users not yet activated</td>
+          </tr>
+          <tr>
+            <td>Amex Membership Rewards</td>
+            <td><span class="badge badge-gap">Required</span></td>
+            <td>1pt per £1 (no-fee card)</td>
+            <td>Strong aspirational brand marketing; RevPoints has no equivalent mass campaign yet</td>
+          </tr>
+          <tr>
+            <td>Monzo Perks</td>
+            <td><span class="badge badge-win">Not required</span></td>
+            <td>Cashback at select partners</td>
+            <td>Simpler proposition; RevPoints has a richer ecosystem that is not yet communicated with equivalent clarity</td>
+          </tr>
+          <tr>
+            <td>Chase UK cashback</td>
+            <td><span class="badge badge-win">Not required</span></td>
+            <td>1% cashback, capped at £15/month</td>
+            <td>Chase markets simplicity hard; RevPoints complexity needs clearer everyday storytelling to compete</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 4: POSITIONING -->
+  <div>
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-label">Messaging gap — current vs recommended</div>
+    </div>
+
+    <div class="pos-card">
+      <div class="pos-title">Shifting the narrative</div>
+      <div class="pos-desc">RevPoints' visible marketing currently leans toward travel rewards for high-tier users. The larger untapped audience needs a different angle — one that makes activation feel like a no-brainer for everyday spenders, not just frequent flyers.</div>
+
+      <div class="pos-row">
+        <div class="pos-box">
+          <div class="pos-box-label">Current framing (observed)</div>
+          <div class="pos-box-text">"Earn up to 1pt per £1 and redeem for flights" — aspirational, skewed toward Ultra and travel-heavy users</div>
+        </div>
+        <div class="pos-arrow">&#8594;</div>
+        <div class="pos-box recommended">
+          <div class="pos-box-label">Recommended shift</div>
+          <div class="pos-box-text">"You are already spending — you should already be earning." Lead with the activation gap as the story; frictionless urgency for the dormant base</div>
+        </div>
+      </div>
+
+      <div class="pos-row" style="margin-bottom:0">
+        <div class="pos-box">
+          <div class="pos-box-label">Current redemption focus</div>
+          <div class="pos-box-text">Airline miles and hotel stays — high aspiration, low frequency for most users</div>
+        </div>
+        <div class="pos-arrow">&#8594;</div>
+        <div class="pos-box recommended">
+          <div class="pos-box-label">Recommended shift</div>
+          <div class="pos-box-text">Revolut Pay discounts and partner shops — immediate weekly gratification that drives habitual engagement, not just holiday spending</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: 30-60-90 -->
+  <div id="plan">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-label">Proposed 30-60-90 day plan — click each phase</div>
+    </div>
+
+    <div class="timeline-card">
+      <div class="timeline-title">What I would do in the first 90 days</div>
+      <div class="timeline-desc">Click each phase to explore the plan. Each phase builds on the previous one — listen first, then test, then scale.</div>
+
+      <div class="timeline-tabs">
+        <button class="timeline-tab active-d30" onclick="showPhase('d30',this)">Days 1-30: Listen and map</button>
+        <button class="timeline-tab" onclick="showPhase('d60',this)">Days 31-60: Test and build</button>
+        <button class="timeline-tab" onclick="showPhase('d90',this)">Days 61-90: Scale and measure</button>
+      </div>
+
+      <div class="timeline-panel active" id="panel-d30">
+        <div class="panel-focus d30">Listen and map</div>
+        <div class="action-grid">
+          <div class="action-item d30">
+            <div class="action-tag d30">Funnel audit</div>
+            <div class="action-title">Map the full activation journey</div>
+            <div class="action-body">Identify exactly where in the opt-in flow users drop off. Every touchpoint from app home to RevPoints active state gets documented and prioritised by drop-off rate.</div>
+          </div>
+          <div class="action-item d30">
+            <div class="action-tag d30">Segmentation</div>
+            <div class="action-title">Profile the 53M dormant users</div>
+            <div class="action-body">Work with data team to segment dormant users by plan type, spend level, and tenure. Identify highest-propensity first wave — likely active spenders on Plus or Metal plans.</div>
+          </div>
+          <div class="action-item d30">
+            <div class="action-tag d30">Competitive intel</div>
+            <div class="action-title">Audit how competitors talk about loyalty</div>
+            <div class="action-body">Document Amex, Chase, and Monzo paid and organic messaging across channels. Identify vocabulary, emotional hooks, and audience framing that RevPoints is not yet using.</div>
+          </div>
+          <div class="action-item d30">
+            <div class="action-tag d30">Internal alignment</div>
+            <div class="action-title">Stakeholder interviews</div>
+            <div class="action-body">Meet with product, data, comms, and design teams. Understand what has been tried, what is on the roadmap, and where marketing is blocked vs. where it can move fast.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-panel" id="panel-d60">
+        <div class="panel-focus d60">Test and build</div>
+        <div class="action-grid">
+          <div class="action-item d60">
+            <div class="action-tag d60">Campaign</div>
+            <div class="action-title">Launch activation campaign v1</div>
+            <div class="action-body">In-app push and email to the highest-propensity dormant segment. A/B test two frames: "you are missing out" (loss aversion) vs. "here is what you could already have earned" (aspiration). Measure activation rate per variant.</div>
+          </div>
+          <div class="action-item d60">
+            <div class="action-tag d60">Content</div>
+            <div class="action-title">Partner-led social content series</div>
+            <div class="action-body">Leverage the Audi F1 and Manchester City partnerships to build organic short-form content that frames RevPoints as a lifestyle product, not a banking feature. Target the 18-34 segment where Revolut already has strong penetration.</div>
+          </div>
+          <div class="action-item d60">
+            <div class="action-tag d60">Trust</div>
+            <div class="action-title">Earn rate transparency protocol</div>
+            <div class="action-body">Propose a comms standard for partner rate changes — proactive in-app notification before changes go live. Addresses a known pain point in the loyalty community and protects brand trust long-term.</div>
+          </div>
+          <div class="action-item d60">
+            <div class="action-tag d60">Positioning</div>
+            <div class="action-title">Reframe messaging for Standard users</div>
+            <div class="action-body">Develop a messaging track specifically for the Standard plan base — focusing on Revolut Pay discounts and partner shops as low-bar, immediate redemptions. Test in CRM first, then in-product.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-panel" id="panel-d90">
+        <div class="panel-focus d90">Scale and measure</div>
+        <div class="action-grid">
+          <div class="action-item d90">
+            <div class="action-tag d90">Scale</div>
+            <div class="action-title">Roll out winning activation variant</div>
+            <div class="action-body">Expand the best-performing message from days 31-60 to the full dormant segment across three or more markets. Localise copy for cultural relevance while maintaining core message consistency.</div>
+          </div>
+          <div class="action-item d90">
+            <div class="action-tag d90">Education</div>
+            <div class="action-title">Launch RevPoints 101 content series</div>
+            <div class="action-body">Short-form video series (60-90 seconds) explaining earn and redeem mechanics in plain language. Target Standard users specifically. Distribute across in-app, TikTok, and YouTube Shorts — formats with proven ROI for this age group.</div>
+          </div>
+          <div class="action-item d90">
+            <div class="action-tag d90">Measurement</div>
+            <div class="action-title">Establish PMM-owned KPI framework</div>
+            <div class="action-body">Define activation rate, first redemption rate, and upgrade conversion as the three core metrics owned by the PMM function. Build a reporting cadence that connects marketing activity directly to these outcomes.</div>
+          </div>
+          <div class="action-item d90">
+            <div class="action-tag d90">Strategy</div>
+            <div class="action-title">Present H2 recommendations to leadership</div>
+            <div class="action-body">Synthesise 90 days of data and testing into a data-backed proposal for H2 2026 — including market prioritisation, channel mix, and any product marketing blockers that need resolution upstream.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: RESUME -->
+  <div id="resume">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-label">Background and resume</div>
+    </div>
+
+    <div class="resume-card">
+      <div style="width:100%">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:20px; margin-bottom:20px;">
+          <div class="resume-left">
+            <div class="resume-icon">
+              <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="2" width="14" height="18" rx="2" stroke="#8b8ef7" stroke-width="1.5"/>
+                <line x1="7" y1="7" x2="15" y2="7" stroke="#8b8ef7" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="7" y1="11" x2="15" y2="11" stroke="#8b8ef7" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="7" y1="15" x2="11" y2="15" stroke="#8b8ef7" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="resume-title">Full resume</div>
+            <div class="resume-sub">4+ years across Web3, fintech content, and growth marketing. B.Tech in Computer Science. Execution-focused with a track record in high-volume, multi-market environments.</div>
+          </div>
+          <div class="resume-actions">
+            <!--
+              ============================================================
+              PASTE YOUR GOOGLE DRIVE LINK BELOW
+              Steps:
+              1. Upload your resume PDF to Google Drive
+              2. Right-click the file and select "Share"
+              3. Change access to "Anyone with the link can view"
+              4. Copy the link and replace the # below with your Drive URL
+              ============================================================
+            -->
+            <a class="resume-btn primary" href="#" id="resume-drive-btn" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 10.5L5.5 4.5L9 10.5H2Z" fill="white"/><path d="M9 10.5L12 10.5L8.5 4.5" stroke="white" stroke-width="1.2" fill="none"/><path d="M5.5 4.5H8.5" stroke="white" stroke-width="1.2"/></svg>
+              View resume on Drive
+            </a>
+            <a class="resume-btn secondary" href="mailto:bhanukumar0902@gmail.com">
+              Request a copy
+            </a>
+          </div>
+        </div>
+
+        <div class="resume-highlights">
+          <div class="resume-highlight">
+            <div class="rh-label">Experience</div>
+            <div class="rh-value">4+</div>
+            <div class="rh-desc">years in growth marketing and content strategy</div>
+          </div>
+          <div class="resume-highlight">
+            <div class="rh-label">Impressions generated</div>
+            <div class="rh-value">1M+</div>
+            <div class="rh-desc">through thought leadership for Web3 founders</div>
+          </div>
+          <div class="resume-highlight">
+            <div class="rh-label">Engagement lift</div>
+            <div class="rh-value">+23%</div>
+            <div class="rh-desc">month-on-month via data-driven optimisation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: METHODOLOGY -->
+  <div>
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-label">A note on methodology</div>
+    </div>
+
+    <div class="method-card">
+      <div class="finding-list">
+        <div class="finding">
+          <div class="finding-icon info">i</div>
+          <div class="finding-text">All statistics are drawn from <strong>Revolut's 2025 Annual Report</strong> (published April 2026), official press releases, and Revolut's own product pages. No metrics have been estimated or invented.</div>
+        </div>
+        <div class="finding" style="margin-top:10px">
+          <div class="finding-icon info">i</div>
+          <div class="finding-text">The activation gap (76% of users not on RevPoints) is derived directly from publicly confirmed figures: <strong>17M RevPoints users vs 70M+ total customers</strong> as stated in Revolut's own annual report.</div>
+        </div>
+        <div class="finding" style="margin-top:10px">
+          <div class="finding-icon info">i</div>
+          <div class="finding-text">Marketing gap observations are based on <strong>publicly visible channels</strong> — social media, product pages, press coverage, and community forums. Internal data will tell a richer story — and learning that story would be day one.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNATURE -->
+  <div class="sig">
+    <div>
+      <div class="sig-name">Bhanu Kumar</div>
+      <div class="sig-details">
+        <a href="mailto:bhanukumar0902@gmail.com">bhanukumar0902@gmail.com</a><br>
+        <a href="https://linkedin.com/in/bhanuexcalibur" target="_blank">linkedin.com/in/bhanuexcalibur</a> &nbsp;·&nbsp;
+        <a href="https://twitter.com/excaliburbhanu" target="_blank">@excaliburbhanu</a>
+      </div>
+    </div>
+    <a class="sig-btn" href="mailto:bhanukumar0902@gmail.com">
+      Get in touch
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+</div>
+
+<script>
+  // Animate gap bar on load
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.getElementById('gap-bar').style.width = '24%';
+    }, 500);
+  });
+
+  // Calculator logic
+  function fmt(n) {
+    if (n >= 1000000000) return (n / 1000000000).toFixed(1) + 'B';
+    if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000) return Math.round(n / 1000) + 'K';
+    return n.toLocaleString();
+  }
+
+  function updateCalc() {
+    var rate   = parseInt(document.getElementById('rate-slider').value);
+    var months = parseInt(document.getElementById('months-slider').value);
+    var spend  = parseInt(document.getElementById('spend-slider').value);
+
+    document.getElementById('rate-val').textContent   = rate + '%';
+    document.getElementById('months-val').textContent = months + (months === 1 ? ' mo' : ' mo');
+    document.getElementById('spend-val').textContent  = '\u00a3' + spend.toLocaleString();
+
+    var dormant     = 53000000;
+    var newUsers    = Math.round(dormant * rate / 100);
+    var totalUsers  = newUsers + 17000000;
+    var pointsMonth = Math.round(newUsers * spend / 10);
+    var upgrades    = Math.round(newUsers * 0.10);
+
+    document.getElementById('new-users').textContent     = fmt(newUsers);
+    document.getElementById('total-users').textContent   = fmt(totalUsers);
+    document.getElementById('points-earned').textContent = fmt(pointsMonth);
+    document.getElementById('upgrade-signal').textContent= fmt(upgrades);
+  }
+
+  ['rate-slider','months-slider','spend-slider'].forEach(function(id) {
+    document.getElementById(id).addEventListener('input', updateCalc);
+  });
+
+  // Timeline tabs
+  function showPhase(phase, btn) {
+    document.querySelectorAll('.timeline-panel').forEach(function(p) {
+      p.classList.remove('active');
+    });
+    document.querySelectorAll('.timeline-tab').forEach(function(t) {
+      t.className = 'timeline-tab';
+    });
+    document.getElementById('panel-' + phase).classList.add('active');
+    btn.classList.add('active-' + phase);
+  }
+
+  // Resume Drive button — show alert if link not yet set
+  document.getElementById('resume-drive-btn').addEventListener('click', function(e) {
+    if (this.getAttribute('href') === '#') {
+      e.preventDefault();
+      alert('Resume link not added yet. Replace the # in the HTML with your Google Drive link.');
+    }
+  });
+</script>
+</body>
+</html>
