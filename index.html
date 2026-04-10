@@ -49,16 +49,15 @@ body {
   background: var(--bg);
   color: var(--text-1);
   font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  line-height: 1.65;
+  font-size: 17px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ======= LAYOUT ======= */
 .page-wrap {
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 44px 28px 88px;
+  width: 100%;
+  padding: 52px 6vw 100px;
 }
 
 /* ======= NAV ======= */
@@ -73,7 +72,7 @@ body {
 
 .nav-logo {
   font-family: 'Syne', sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.025em;
   color: var(--text-1);
@@ -84,9 +83,9 @@ body {
 .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
 
 .nav-pill {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
-  padding: 6px 14px;
+  padding: 8px 18px;
   border-radius: 100px;
   border: 1px solid var(--border);
   color: var(--text-2);
@@ -169,12 +168,12 @@ body {
 
 .cover-title {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(30px, 4.5vw, 48px);
+  font-size: clamp(36px, 5.5vw, 62px);
   font-weight: 800;
   line-height: 1.0;
   letter-spacing: -0.03em;
   margin-bottom: 18px;
-  max-width: 600px;
+  max-width: 780px;
   color: var(--text-1);
 }
 
@@ -183,10 +182,10 @@ body {
 }
 
 .cover-sub {
-  font-size: 15px;
+  font-size: 17px;
   color: var(--text-2);
   line-height: 1.7;
-  max-width: 560px;
+  max-width: 640px;
   margin-bottom: 32px;
   font-weight: 300;
 }
@@ -200,13 +199,13 @@ body {
 }
 
 .meta-item {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-3);
 }
 
 .meta-item strong {
   display: block;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--text-1);
   margin-bottom: 2px;
@@ -216,18 +215,18 @@ body {
 .section-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
-  margin-top: 40px;
+  gap: 14px;
+  margin-bottom: 22px;
+  margin-top: 52px;
 }
 
 .section-num {
-  width: 24px; height: 24px;
+  width: 32px; height: 32px;
   border-radius: 50%;
   background: var(--bg4);
   border: 1px solid var(--border-md);
-  color: var(--text-2);
-  font-size: 11px;
+  color: var(--text-1);
+  font-size: 14px;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -236,35 +235,35 @@ body {
 }
 
 .section-label {
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: var(--text-2);
 }
 
 /* ======= METRIC CARDS ======= */
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0,1fr));
-  gap: 10px;
-  margin-bottom: 24px;
+  gap: 14px;
+  margin-bottom: 28px;
 }
 
 .metric-card {
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 20px 18px;
+  padding: 28px 24px;
   transition: border-color 0.2s;
 }
 
 .metric-card:hover { border-color: var(--border-md); }
 
 .metric-label {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--text-3);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   line-height: 1.4;
   font-weight: 500;
   letter-spacing: 0.03em;
@@ -272,10 +271,10 @@ body {
 
 .metric-value {
   font-family: 'Syne', sans-serif;
-  font-size: 28px;
+  font-size: clamp(36px, 3.5vw, 52px);
   font-weight: 700;
   line-height: 1;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .metric-value.neutral { color: var(--text-1); }
@@ -283,9 +282,9 @@ body {
 .metric-value.gap { color: var(--red); }
 
 .metric-context {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--text-3);
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 /* ======= GAP CARD ======= */
@@ -306,18 +305,18 @@ body {
 }
 
 .gap-desc {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-2);
   line-height: 1.7;
   margin-bottom: 28px;
-  max-width: 620px;
+  max-width: 720px;
   font-weight: 300;
 }
 
 .bar-labels {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-3);
   margin-bottom: 10px;
 }
@@ -347,20 +346,20 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-2);
 }
 
 .legend-dot {
-  width: 8px; height: 8px;
+  width: 10px; height: 10px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
 .callout {
   margin-top: 20px;
-  padding: 14px 18px;
-  font-size: 13px;
+  padding: 16px 20px;
+  font-size: 15px;
   line-height: 1.65;
   font-weight: 300;
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
@@ -387,7 +386,7 @@ body {
 }
 
 .calc-desc {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-2);
   margin-bottom: 30px;
   font-weight: 300;
@@ -407,7 +406,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-2);
   margin-bottom: 10px;
 }
@@ -475,17 +474,17 @@ input[type=range]::-moz-range-thumb {
 }
 
 .result-chip-label {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-3);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 500;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .result-chip-value {
   font-family: 'Syne', sans-serif;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--text-1);
   line-height: 1;
@@ -494,9 +493,9 @@ input[type=range]::-moz-range-thumb {
 .result-chip.highlight .result-chip-value { color: var(--blue-text); }
 
 .result-chip-sub {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-3);
-  margin-top: 4px;
+  margin-top: 5px;
 }
 
 /* ======= TWO COL ======= */
@@ -515,7 +514,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 .card-title {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   margin-bottom: 16px;
   padding-bottom: 14px;
@@ -524,19 +523,19 @@ input[type=range]::-moz-range-thumb {
   letter-spacing: 0.01em;
 }
 
-.finding-list { display: flex; flex-direction: column; gap: 13px; }
+.finding-list { display: flex; flex-direction: column; gap: 14px; }
 
-.finding { display: flex; gap: 10px; align-items: flex-start; }
+.finding { display: flex; gap: 12px; align-items: flex-start; }
 
 .finding-icon {
-  width: 20px; height: 20px;
+  width: 22px; height: 22px;
   border-radius: 50%;
   flex-shrink: 0;
-  margin-top: 1px;
+  margin-top: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
 }
 
@@ -545,9 +544,9 @@ input[type=range]::-moz-range-thumb {
 .finding-icon.info { background: var(--blue-dim);  color: var(--blue-text);  }
 
 .finding-text {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-2);
-  line-height: 1.6;
+  line-height: 1.65;
   font-weight: 300;
 }
 
@@ -562,26 +561,26 @@ input[type=range]::-moz-range-thumb {
   margin-bottom: 24px;
 }
 
-.comp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.comp-table { width: 100%; border-collapse: collapse; font-size: 14px; }
 
 .comp-table thead th {
   background: var(--bg3);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-3);
-  padding: 12px 16px;
+  padding: 14px 18px;
   text-align: left;
   border-bottom: 1px solid var(--border);
 }
 
 .comp-table tbody td {
-  padding: 14px 16px;
+  padding: 16px 18px;
   border-bottom: 1px solid var(--border);
   color: var(--text-2);
   vertical-align: top;
-  line-height: 1.55;
+  line-height: 1.6;
   font-weight: 300;
 }
 
@@ -620,11 +619,11 @@ input[type=range]::-moz-range-thumb {
 }
 
 .pos-desc {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-2);
   margin-bottom: 24px;
   font-weight: 300;
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
 .pos-row {
@@ -639,7 +638,7 @@ input[type=range]::-moz-range-thumb {
   background: var(--bg3);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 16px 18px;
+  padding: 18px 20px;
 }
 
 .pos-box.recommended {
@@ -648,20 +647,20 @@ input[type=range]::-moz-range-thumb {
 }
 
 .pos-box-label {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-3);
-  margin-bottom: 7px;
+  margin-bottom: 8px;
 }
 
 .pos-box.recommended .pos-box-label { color: var(--blue-text); opacity: 0.7; }
 
 .pos-box-text {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-2);
-  line-height: 1.55;
+  line-height: 1.6;
   font-weight: 300;
 }
 
@@ -687,7 +686,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 .timeline-desc {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-2);
   margin-bottom: 26px;
   font-weight: 300;
@@ -702,8 +701,8 @@ input[type=range]::-moz-range-thumb {
 }
 
 .timeline-tab {
-  padding: 10px 22px;
-  font-size: 13px;
+  padding: 12px 26px;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
   border: none;
@@ -773,16 +772,16 @@ input[type=range]::-moz-range-thumb {
 .action-tag.d90 { background: var(--purple-dim); color: var(--purple-text); }
 
 .action-title {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
-  margin-bottom: 7px;
+  margin-bottom: 8px;
   color: var(--text-1);
 }
 
 .action-body {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-2);
-  line-height: 1.6;
+  line-height: 1.65;
   font-weight: 300;
 }
 
@@ -824,11 +823,11 @@ input[type=range]::-moz-range-thumb {
 }
 
 .resume-sub {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-2);
-  line-height: 1.6;
+  line-height: 1.65;
   font-weight: 300;
-  max-width: 420px;
+  max-width: 480px;
 }
 
 .resume-actions {
@@ -842,9 +841,9 @@ input[type=range]::-moz-range-thumb {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 11px 22px;
+  padding: 13px 26px;
   border-radius: 100px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   text-decoration: none;
   font-family: 'DM Sans', sans-serif;
@@ -890,25 +889,25 @@ input[type=range]::-moz-range-thumb {
 }
 
 .rh-label {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--text-3);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .rh-value {
   font-family: 'Syne', sans-serif;
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 700;
   color: var(--text-1);
   line-height: 1;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
 }
 
 .rh-desc {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-3);
   line-height: 1.4;
 }
@@ -955,7 +954,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 .sig-details {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-2);
   line-height: 1.8;
   font-weight: 300;
@@ -975,9 +974,9 @@ input[type=range]::-moz-range-thumb {
   gap: 8px;
   background: var(--blue);
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
-  padding: 13px 28px;
+  padding: 15px 32px;
   border-radius: 100px;
   text-decoration: none;
   font-family: 'DM Sans', sans-serif;
@@ -988,7 +987,7 @@ input[type=range]::-moz-range-thumb {
 
 /* ======= RESPONSIVE ======= */
 @media (max-width: 660px) {
-  .page-wrap { padding: 28px 18px 60px; }
+  .page-wrap { padding: 24px 5vw 60px; }
   .cover { padding: 28px 22px 24px; }
   .metrics-grid { grid-template-columns: repeat(2, 1fr); }
   .two-col, .calc-body, .action-grid { grid-template-columns: 1fr; }
@@ -999,7 +998,17 @@ input[type=range]::-moz-range-thumb {
   .resume-highlights { grid-template-columns: 1fr 1fr; }
   .sig { flex-direction: column; align-items: flex-start; padding: 24px 22px; }
   .timeline-tabs { overflow-x: auto; }
-  .timeline-tab { padding: 10px 14px; font-size: 12px; }
+  .timeline-tab { padding: 10px 14px; font-size: 13px; }
+  .section-label { font-size: 12px; }
+}
+
+@media (min-width: 1400px) {
+  .page-wrap { padding: 60px 8vw 120px; }
+  .cover { padding: 60px 56px 48px; }
+}
+
+@media (min-width: 1800px) {
+  .page-wrap { padding: 60px 10vw 120px; }
 }
 </style>
 </head>
@@ -1412,7 +1421,7 @@ input[type=range]::-moz-range-thumb {
               4. Copy the link and replace the # below with your Drive URL
               ============================================================
             -->
-            <a class="resume-btn primary" href="https://drive.google.com/file/d/1uH7uMNGItUWvhXgge-wx5_YutJlbIvOv/view?usp=sharing" id="resume-drive-btn" target="_blank" rel="noopener">
+            <a class="resume-btn primary" href="#" id="resume-drive-btn" target="_blank" rel="noopener">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 10.5L5.5 4.5L9 10.5H2Z" fill="white"/><path d="M9 10.5L12 10.5L8.5 4.5" stroke="white" stroke-width="1.2" fill="none"/><path d="M5.5 4.5H8.5" stroke="white" stroke-width="1.2"/></svg>
               View resume on Drive
             </a>
